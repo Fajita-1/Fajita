@@ -17,10 +17,25 @@
         };
         const makeTiles = (number) => {
             let i = 1;
+            let posArr = [];
+            let usedNumArr = [];
             while (i < number + 1) {
-                $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+                posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+                // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
                 i++
             };
+            let j = 0
+            while (j < posArr.length) {
+                let randomNumber = Math.ceil(Math.random() * number -1);
+                while (usedNumArr.includes(randomNumber)) {
+                    randomNumber = Math.ceil(Math.random() * number -1);
+                }
+                $('#wrapper').append(posArr[randomNumber]);
+                usedNumArr.push(randomNumber);
+                j++
+            };
+
+
         };
         createWrapper();
         makeTiles(9);
@@ -37,22 +52,15 @@
         let dragTileId;
         let dragTileContainerId;
         const dragStart = function () {
-            $(this).addClass('hold');
+            // $(this).addClass('hold');
             dragTileId = $(this).attr('id');
             dragTileContainerId = $(this).parent().attr('id');
+            console.log(dragTileId)
             console.log(dragTileContainerId);
-            // let realThis = $(this);
-            // setTimeout(function () {
-            //     realThis.addClass('invisible');
-            // }, 0);
         };
 
         const dragEnd = function () {
-            console.log('dragend');
-            // let realThis = $(this);
-            // setTimeout(function () {
-            //     realThis.removeClass('invisible');
-            // }, 0);
+            // console.log('dragend');
         };
 
         const dragOver = function (e) {
@@ -69,10 +77,10 @@
         };
 
         const dragDrop = function () {
-            console.log($(this).attr('id'));
+            console.log(`This was drop target ${$(this).attr('id')}`);
             let swap = $(this).children().attr('id');
             let stash = $(`#${swap}`);
-            console.log(swap);
+            console.log(`This was swapped: ${swap}`);
             $(this).html($(`#${dragTileId}`));
             $(`#${dragTileContainerId}`).html(stash);
         };

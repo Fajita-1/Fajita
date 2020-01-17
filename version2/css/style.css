@@ -1,0 +1,37 @@
+/*field.css('border', '1px solid black');*/
+/*field.css('background', '#ccf');*/
+/*field.width(width);*/
+/*field.height(height);*/
+* {
+  box-sizing: border-box;
+}
+#title {
+    text-align: center;
+}
+
+#wrapper {
+    border: solid black 1px;
+    background-color: #CCF;
+    width: 80vw;
+    height: 80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.tile {
+    border: solid black 1px;
+    width: 33%;
+    height: 33%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3.5rem;
+}
+
+.number {
+
+}

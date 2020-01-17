@@ -34,8 +34,6 @@
                 usedNumArr.push(randomNumber);
                 j++
             };
-
-
         };
         createWrapper();
         makeTiles(9);
@@ -97,10 +95,5 @@
 
         tile.on('dragstart', dragStart);
         tile.on('dragend', dragEnd);
-
-
-
-
-
     });
 })();

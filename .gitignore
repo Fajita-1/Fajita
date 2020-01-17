@@ -3,3 +3,4 @@
 .DS_STORE
 .env
 js/keys.js
+node_modules

@@ -24,7 +24,8 @@ export default class PicturePuzzle {
             //based on that info set the size of the divs
             this.el.style.width = `${this.width}px`;
             this.el.style.height = `${this.height}px`;
-
+            //why not this.setup()?
+            picturePuzzle.setup();
         };
         img.src = this.imageSrc
         //
@@ -33,6 +34,7 @@ export default class PicturePuzzle {
     init() {
         this.el = this.createWrapper();
         this.parentEl.appendChild(this.el);
+
     }
 
     createWrapper() {

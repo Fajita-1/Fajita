@@ -61,19 +61,20 @@
 
         const dragEnter = function (e) {
             e.preventDefault()
-            $(this).addClass('hover');
+            // $(this).addClass('hover');
         };
 
         const dragLeave = function () {
-            $(this).removeClass('hover');
+            // $(this).removeClass('hover');
         };
 
         const dragDrop = function () {
             console.log($(this).attr('id'));
             let swap = $(this).children().attr('id');
+            let stash = $(`#${swap}`);
             console.log(swap);
-            $(dragTileContainerId).html($(`#${swap}`));
             $(this).html($(`#${dragTileId}`));
+            $(`#${dragTileContainerId}`).html(stash);
         };
 
         //containers listeners

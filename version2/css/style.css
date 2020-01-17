@@ -20,18 +20,42 @@
     justify-content: space-evenly;
 }
 
-.tile {
+.tile-container {
     border: solid black 1px;
     width: 33%;
     height: 33%;
     margin: 0;
+    color: white;
+    font-size: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 3.5rem;
 }
 
-.number {
+.tile {
+    background-image: url('http://source.unsplash.com/random/150x150');
 
+    width: 95%;
+    height: 95%;
+    border: solid black 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+//
+/*.fill{*/
+/*  display: block;*/
+/*}*/
+.hold {
+    border: solid #ccc 30px;
+}
+
+.hovered {
+    background: #F4F4F4;
+    border-style: dashed;
+}
+
+.invisible {
+    display: none;
 }

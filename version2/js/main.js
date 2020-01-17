@@ -51,8 +51,9 @@
         //drag functions
         let dragTileId;
         let dragTileContainerId;
+
         const dragStart = function () {
-            // $(this).addClass('hold');
+            console.log("drag start");
             dragTileId = $(this).attr('id');
             dragTileContainerId = $(this).parent().attr('id');
             console.log(dragTileId)
@@ -60,7 +61,7 @@
         };
 
         const dragEnd = function () {
-            // console.log('dragend');
+
         };
 
         const dragOver = function (e) {
@@ -76,13 +77,14 @@
             // $(this).removeClass('hover');
         };
 
-        const dragDrop = function () {
+        const dragDrop = function (e) {
             console.log(`This was drop target ${$(this).attr('id')}`);
             let swap = $(this).children().attr('id');
             let stash = $(`#${swap}`);
             console.log(`This was swapped: ${swap}`);
             $(this).html($(`#${dragTileId}`));
             $(`#${dragTileContainerId}`).html(stash);
+            tile.on('dragstart', dragStart);
         };
 
         //containers listeners

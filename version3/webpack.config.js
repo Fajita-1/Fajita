@@ -24,7 +24,7 @@ module.exports = {
     devtool: "source-maps",
     devServer: {
         contentBase: path.join(__dirname, 'src'),
-        watchContentBase: true,
+       watchContentBase: true,
         hot: true,
         open: true
     },

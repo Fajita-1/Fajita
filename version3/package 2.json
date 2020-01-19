@@ -1,0 +1,23 @@
+{
+  "name": "version3",
+  "version": "1.0.0",
+  "description": "picture puzzle ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fajita-1/Fajita.git"
+  },
+  "author": "Matt-Murphy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fajita-1/Fajita/issues"
+  },
+  "homepage": "https://github.com/Fajita-1/Fajita#readme",
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

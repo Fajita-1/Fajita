@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/PicturePuzzle.js',
     output: {
-        filename: 'main.js',
+        filename: 'cell.js',
         path: path.resolve(__dirname, 'dist'),
     },
 };

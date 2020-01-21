@@ -5,13 +5,20 @@
 * {
   box-sizing: border-box;
 }
+body {
+    background-color: rgb(215, 178, 255);
+}
 #title {
     text-align: center;
+    font-family: 'Ubuntu Mono', monospace;
 }
-
 #wrapper {
-    border: solid black 1px;
-    background-color: #CCF;
+    max-width: 666px;
+    max-height: 666px;
+    background-color: #9658FF;
+    border: solid #efefef 4px;
+    border-radius: 30px;
+    padding: 10px;
     width: 80vw;
     height: 80vw;
     margin: 0 auto;
@@ -21,10 +28,11 @@
 }
 
 .tile-container {
-    border: solid black 1px;
+    /*border: solid black 1px;*/
     width: 33%;
     height: 33%;
     margin: 0;
+    /*padding: 5px;*/
     color: white;
     font-size: 3.5rem;
     display: flex;
@@ -33,11 +41,12 @@
 }
 
 .tile {
-    background-image: url('http://source.unsplash.com/random/150x150');
+    /*background-image: url('http://source.unsplash.com/random/150x150');*/
 
     width: 95%;
     height: 95%;
-    border: solid black 1px;
+    /*border: solid black 1px;*/
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;

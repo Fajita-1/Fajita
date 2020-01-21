@@ -35,46 +35,36 @@
             //     j++
             // };
             //test
-            setTimeout(function () {
-                console.log(`In timeout`);
-                let i = 1;
-                let posArr = [];
-                let number = 9;
-                let usedNumArr = [];
-                while (i < number + 1) {
-                    posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-                    // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-                    i++
-                    console.log(`In timeout while i`);
-                    console.log(posArr);
-                };
-                i = 0
-                let j = 1;
-                while (i < posArr.length) {
-                    let randomNumber = Math.ceil(Math.random() * number - 1);
-                    while (usedNumArr.includes(randomNumber)) {
-                        randomNumber = Math.ceil(Math.random() * number -1);
-                    }
-                    // console.log($(`#tile-container-${j}`).children())
-                    $(`#tile-container-${j}`).children().remove();
-                    $(`#tile-container-${j}`).html(posArr[randomNumber]);
-                    usedNumArr.push(randomNumber);
-                    j++;
-                    i++;
-                    console.log(`In timeout while j`);
-                    console.log(usedNumArr);
-                };
-                //containers listeners
-                tileContainer.on('dragover', dragOver);
-                tileContainer.on('dragenter', dragEnter);
-                tileContainer.on('dragleave', dragLeave);
-                tileContainer.on('drop', dragDrop);
-
-                //tile listeners
-
-                tile.on('dragstart', dragStart);
-                tile.on('dragend', dragEnd);
-            }, 3000);
+            // setTimeout(function () {
+            //     console.log(`In timeout`);
+            //     let i = 1;
+            //     let posArr = [];
+            //     let number = 9;
+            //     let usedNumArr = [];
+            //     while (i < number + 1) {
+            //         posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+            //         // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+            //         i++
+            //         console.log(`In timeout while i`);
+            //         console.log(posArr);
+            //     };
+            //     i = 0
+            //     let j = 1;
+            //     while (i < posArr.length) {
+            //         let randomNumber = Math.ceil(Math.random() * number - 1);
+            //         while (usedNumArr.includes(randomNumber)) {
+            //             randomNumber = Math.ceil(Math.random() * number -1);
+            //         }
+            //         // console.log($(`#tile-container-${j}`).children())
+            //         $(`#tile-container-${j}`).children().remove();
+            //         $(`#tile-container-${j}`).html(posArr[randomNumber]);
+            //         usedNumArr.push(randomNumber);
+            //         j++;
+            //         i++;
+            //         console.log(`In timeout while j`);
+            //         console.log(usedNumArr);
+            //     };
+            // }, 3000);
 
 
         };
@@ -101,27 +91,51 @@
         // };
         //checks to see if puzzle is in proper places
         const checkPuzzle = () => {
-            let puzzleCompletion = {
-                'cont1': false,
-                'cont2': false,
-                'cont3': false,
-                'cont4': false,
-                'cont5': false,
-                'cont6': false,
-                'cont7': false,
-                'cont8': false,
-                'cont9': false
-            };
-            $('.tile-container').each(function(i) {
-                if ($(`#tile-container-${i}`).children().attr('id') === `tile-${i}`) {
-                    puzzleCompletion[`cont${i}`]= true;
-                    console.log(`If ${i}`);
-                } else {
-                    puzzleCompletion[`cont${i}`]= false;
-                    console.log(`Else ${i}`);
+            setTimeout(function() {
+                let puzzleCompletion = {
+                    'cont1': false,
+                    'cont2': false,
+                    'cont3': false,
+                    'cont4': false,
+                    'cont5': false,
+                    'cont6': false,
+                    'cont7': false,
+                    'cont8': false,
+                    'cont9': false
                 };
-            });
-            console.log(puzzleCompletion);
+                $('.tile-container').each(function(i) {
+                    i++
+                    console.log(`tile-container number: ${i}`)
+                    if ($(`#tile-container-${i}`).children().attr('id') === `tile-${i}`) {
+                        puzzleCompletion[`cont${i}`]= true;
+                        console.log(`If ${i}`);
+                    } else {
+                        puzzleCompletion[`cont${i}`]= false;
+                        console.log(`Else ${i}`);
+                    };
+                });
+                console.log(puzzleCompletion);
+                if (puzzleCompletion['cont1']) {
+                    if (puzzleCompletion['cont2']) {
+                        if (puzzleCompletion['cont3']) {
+                            if (puzzleCompletion['cont4']) {
+                                if (puzzleCompletion['cont5']) {
+                                    if (puzzleCompletion['cont6']) {
+                                        if (puzzleCompletion['cont7']) {
+                                            if (puzzleCompletion['cont8']) {
+                                                if (puzzleCompletion['cont9']) {
+                                                    alert('You have won!')
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, 5000)
+
         };
 
         //runs the app
@@ -195,7 +209,6 @@
         tile.on('dragend', dragEnd);
         $('#wrapper').append(`<button type="button" id="generate-puzzle-button">Generate Puzzle</button>`);
         // $('#generate-puzzle-button').click(generatePuzzle(9));
-
 
 
     });

@@ -46,13 +46,10 @@
     width: 120px;
     height: 120px;
     border: 1px solid white;
-    background: url(https://www.101computing.net/wp/wp-content/uploads/flower.png);
+    background: url(https://picsum.photos/360);
     cursor: pointer;
 }
 
-/*.fill{*/
-/*  display: block;*/
-/*}*/
 .hold {
     border: solid #ccc 30px;
 }

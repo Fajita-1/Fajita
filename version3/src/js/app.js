@@ -3,14 +3,15 @@ import PicturePuzzle from './PicturePuzzle'
 
 const picturePuzzle = new PicturePuzzle(
     document.querySelectorAll('#puzzle-wrapper > div')[0],
-    'http://52.24.98.51/wp-content/uploads/2017/01/drone.jpg',
-    600
+   'img/tommy3.jpg',
+    600,
+    3
 );
 const picturePuzzle2 = new PicturePuzzle(
     document.querySelectorAll('#puzzle-wrapper > div')[1],
     'https://www.tesla.com/sites/default/files/images/homepage/20180710/ms/homepage-models.jpg?20181117',
     600,
-    4
+    3
 );
 
 picturePuzzle.onSwap = function(movements){

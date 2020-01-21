@@ -11,11 +11,11 @@ module.exports = {
     watch: true,
     watchOptions: {
         aggregateTimeout: 300, // Process all changes which happened in this time into one rebuild
-        poll: 1000, // Check for changes every second,
+       poll: 1000, // Check for changes every second,
         ignored: /node_modules/,
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        // new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             template: path.resolve('./src/index.html')
         }),

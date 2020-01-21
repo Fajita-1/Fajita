@@ -1,16 +1,16 @@
 {
-  "name": "picturepuzzle",
+  "name": "version3",
   "version": "1.0.0",
   "description": "",
   "main": "PicturePuzzle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-  "build": "npx webpack --config webpack.config.prod.js",
-   "build-demo": "npx webpack --config webpack.config.demo.js",
+    "build": "npx webpack --config webpack.config.prod.js",
+    "build-demo": "npx webpack --config webpack.config.demo.js",
     "start:dev": "webpack-dev-server"
   },
   "repository": {
-    "type": "git",
+   "type": "git",
     "url": "git+https://github.com/Fajita-1/Fajita.git"
   },
   "author": "Matt-Murphy",

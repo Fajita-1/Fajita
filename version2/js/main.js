@@ -18,25 +18,122 @@
         const makeTiles = (number) => {
             let i = 1;
             let posArr = [];
-            let usedNumArr = [];
+            // let usedNumArr = [];
             while (i < number + 1) {
                 posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-                // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+                $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
                 i++
             };
-            let j = 0
-            while (j < posArr.length) {
-                let randomNumber = Math.ceil(Math.random() * number -1);
-                while (usedNumArr.includes(randomNumber)) {
-                    randomNumber = Math.ceil(Math.random() * number -1);
-                }
-                $('#wrapper').append(posArr[randomNumber]);
-                usedNumArr.push(randomNumber);
-                j++
-            };
+            // let j = 0
+            // while (j < posArr.length) {
+            //     let randomNumber = Math.ceil(Math.random() * number -1);
+            //     while (usedNumArr.includes(randomNumber)) {
+            //         randomNumber = Math.ceil(Math.random() * number -1);
+            //     }
+            //     $('#wrapper').append(posArr[randomNumber]);
+            //     usedNumArr.push(randomNumber);
+            //     j++
+            // };
+            //test
+            setTimeout(function () {
+                console.log(`In timeout`);
+                let i = 1;
+                let posArr = [];
+                let number = 9;
+                let usedNumArr = [];
+                while (i < number + 1) {
+                    posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+                    // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+                    i++
+                    console.log(`In timeout while i`);
+                    console.log(posArr);
+                };
+                i = 0
+                let j = 1;
+                while (i < posArr.length) {
+                    let randomNumber = Math.ceil(Math.random() * number - 1);
+                    while (usedNumArr.includes(randomNumber)) {
+                        randomNumber = Math.ceil(Math.random() * number -1);
+                    }
+                    // console.log($(`#tile-container-${j}`).children())
+                    $(`#tile-container-${j}`).children().remove();
+                    $(`#tile-container-${j}`).html(posArr[randomNumber]);
+                    usedNumArr.push(randomNumber);
+                    j++;
+                    i++;
+                    console.log(`In timeout while j`);
+                    console.log(usedNumArr);
+                };
+                //containers listeners
+                tileContainer.on('dragover', dragOver);
+                tileContainer.on('dragenter', dragEnter);
+                tileContainer.on('dragleave', dragLeave);
+                tileContainer.on('drop', dragDrop);
+
+                //tile listeners
+
+                tile.on('dragstart', dragStart);
+                tile.on('dragend', dragEnd);
+            }, 3000);
+
+
         };
+        // const generatePuzzle = (number) => {
+        //     console.log(`In generate puzzle.`)
+        //     let i = 1;
+        //     let posArr = [];
+        //     let usedNumArr = [];
+        //     while (i < number + 1) {
+        //         posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+        //         // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+        //         i++
+        //     };
+        //     let j = 0
+        //     while (j < posArr.length) {
+        //         let randomNumber = Math.ceil(Math.random() * number -1);
+        //         while (usedNumArr.includes(randomNumber)) {
+        //             randomNumber = Math.ceil(Math.random() * number -1);
+        //         }
+        //         $(`#tile-container-${i}`).html(posArr[randomNumber]);
+        //         usedNumArr.push(randomNumber);
+        //         j++
+        //     };
+        // };
+        //checks to see if puzzle is in proper places
+        const checkPuzzle = () => {
+            let puzzleCompletion = {
+                'cont1': false,
+                'cont2': false,
+                'cont3': false,
+                'cont4': false,
+                'cont5': false,
+                'cont6': false,
+                'cont7': false,
+                'cont8': false,
+                'cont9': false
+            };
+            $('.tile-container').each(function(i) {
+                if ($(`#tile-container-${i}`).children().attr('id') === `tile-${i}`) {
+                    puzzleCompletion[`cont${i}`]= true;
+                    console.log(`If ${i}`);
+                } else {
+                    puzzleCompletion[`cont${i}`]= false;
+                    console.log(`Else ${i}`);
+                };
+            });
+            console.log(puzzleCompletion);
+        };
+
+        //runs the app
         createWrapper();
         makeTiles(9);
+        //
+
+
+
+
+
+        //colors
         $.each($('.tile'), function() {
             while ($(this).css('background-color') === 'rgba(0, 0, 0, 0)') {
                 $(this).css('background-color', hex());
@@ -83,6 +180,7 @@
             $(this).html($(`#${dragTileId}`));
             $(`#${dragTileContainerId}`).html(stash);
             tile.on('dragstart', dragStart);
+            checkPuzzle();
         };
 
         //containers listeners
@@ -95,5 +193,10 @@
 
         tile.on('dragstart', dragStart);
         tile.on('dragend', dragEnd);
+        $('#wrapper').append(`<button type="button" id="generate-puzzle-button">Generate Puzzle</button>`);
+        // $('#generate-puzzle-button').click(generatePuzzle(9));
+
+
+
     });
 })();

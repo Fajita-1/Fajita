@@ -1,6 +1,52 @@
 (() => {
     'use strict';
     $(document).ready(() => {
+        let dragTileId;
+        let dragTileContainerId;
+
+        const dragStart = function () {
+            console.log("drag start");
+            dragTileId = $(this).attr('id');
+            dragTileContainerId = $(this).parent().attr('id');
+            console.log(dragTileId);
+            console.log(dragTileContainerId);
+        };
+
+        const dragOver = function (e) {
+            e.preventDefault();
+        };
+        //
+        const dragEnter = function (e) {
+            e.preventDefault()
+        };
+
+        const dragDrop = function (e) {
+            console.log(`This was drop target ${$(this).attr('id')}`);
+            let swap = $(this).children().attr('id');
+            let stash = $(`#${swap}`);
+            console.log(`This was swapped: ${swap}`);
+            $(this).html($(`#${dragTileId}`));
+            $(`#${dragTileContainerId}`).html(stash);
+            // dragTileContainerId = "";
+            // dragTileId = "";
+            //reattach listeners
+            $(this).off();
+            $(this).children().off();
+            $(this).on('dragover', dragOver);
+            $(this).on('dragenter', dragEnter);
+            $(this).on('drop', dragDrop);
+            $(this).children().on('dragstart', dragStart);
+            //reattach 2nd half
+            $(`#${dragTileContainerId}`).off();
+            $(`#${dragTileContainerId}`).children().off();
+            $(`#${dragTileContainerId}`).on('dragover', dragOver);
+            $(`#${dragTileContainerId}`).on('dragenter', dragEnter);
+            $(`#${dragTileContainerId}`).on('drop', dragDrop);
+            $(`#${dragTileContainerId}`).children().on('dragstart', dragStart);
+            // $(`#${dragTileContainerId}`)
+            // $(`#${dragTileId}`)
+            checkPuzzle();
+        };
         const hex = () => {
             const vals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
             let hexColor = ['#'];
@@ -20,75 +66,40 @@
             let posArr = [];
             // let usedNumArr = [];
             while (i < number + 1) {
-                posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-                $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
+                posArr.push(`<div class="tile-container" id="tile-container-${i}"><div class="tile" id="tile-${i}" draggable="true">${i}</div></div>`);
+                $('#wrapper').append(`<div class="tile-container" id="tile-container-${i}"><div class="tile" id="tile-${i}" draggable="true">${i}</div></div>`);
                 i++
             };
-            // let j = 0
-            // while (j < posArr.length) {
-            //     let randomNumber = Math.ceil(Math.random() * number -1);
-            //     while (usedNumArr.includes(randomNumber)) {
-            //         randomNumber = Math.ceil(Math.random() * number -1);
-            //     }
-            //     $('#wrapper').append(posArr[randomNumber]);
-            //     usedNumArr.push(randomNumber);
-            //     j++
-            // };
-            //test
-            // setTimeout(function () {
-            //     console.log(`In timeout`);
-            //     let i = 1;
-            //     let posArr = [];
-            //     let number = 9;
-            //     let usedNumArr = [];
-            //     while (i < number + 1) {
-            //         posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-            //         // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-            //         i++
-            //         console.log(`In timeout while i`);
-            //         console.log(posArr);
-            //     };
-            //     i = 0
-            //     let j = 1;
-            //     while (i < posArr.length) {
-            //         let randomNumber = Math.ceil(Math.random() * number - 1);
-            //         while (usedNumArr.includes(randomNumber)) {
-            //             randomNumber = Math.ceil(Math.random() * number -1);
-            //         }
-            //         // console.log($(`#tile-container-${j}`).children())
-            //         $(`#tile-container-${j}`).children().remove();
-            //         $(`#tile-container-${j}`).html(posArr[randomNumber]);
-            //         usedNumArr.push(randomNumber);
-            //         j++;
-            //         i++;
-            //         console.log(`In timeout while j`);
-            //         console.log(usedNumArr);
-            //     };
-            // }, 3000);
-
-
         };
-        // const generatePuzzle = (number) => {
-        //     console.log(`In generate puzzle.`)
-        //     let i = 1;
-        //     let posArr = [];
-        //     let usedNumArr = [];
-        //     while (i < number + 1) {
-        //         posArr.push(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-        //         // $('#wrapper').append(`<div class="tile-container" id='tile-container-${i}'><div class="tile" id='tile-${i}' draggable="true">${i}</div></div>`);
-        //         i++
-        //     };
-        //     let j = 0
-        //     while (j < posArr.length) {
-        //         let randomNumber = Math.ceil(Math.random() * number -1);
-        //         while (usedNumArr.includes(randomNumber)) {
-        //             randomNumber = Math.ceil(Math.random() * number -1);
-        //         }
-        //         $(`#tile-container-${i}`).html(posArr[randomNumber]);
-        //         usedNumArr.push(randomNumber);
-        //         j++
-        //     };
-        // };
+        const generatePuzzle = (number) => {
+            let i = 1;
+            let posArr = [];
+            let usedNumArr = [];
+            while (i < number + 1) {
+                posArr.push(`<div class="tile" id="tile-${i}" draggable="true">${i}</div>`);
+                i++
+            };
+            i = 1;
+            let j = 0;
+            while (j < posArr.length) {
+                let randomNumber = Math.floor(Math.random() * number);
+                while (usedNumArr.includes(randomNumber)) {
+                    randomNumber = Math.floor(Math.random() * number);
+                }
+                $(`#tile-container-${i}`).html(posArr[randomNumber]);
+                $(`#tile-container-${i}`).on('dragover', dragOver);
+                $(`#tile-container-${i}`).on('dragenter', dragEnter);
+                $(`#tile-container-${i}`).on('drop', dragDrop);
+                $(`#tile-container-${i}`).children().on('dragstart', dragStart);
+                usedNumArr.push(randomNumber);
+                j++;
+                i++;
+            };
+            // tileContainer.on('dragover', dragOver);
+            // tileContainer.on('dragenter', dragEnter);
+            // tileContainer.on('drop', dragDrop);
+            // tile.on('dragstart', dragStart);
+        };
         //checks to see if puzzle is in proper places
         const checkPuzzle = () => {
             setTimeout(function() {
@@ -108,13 +119,10 @@
                     console.log(`tile-container number: ${i}`)
                     if ($(`#tile-container-${i}`).children().attr('id') === `tile-${i}`) {
                         puzzleCompletion[`cont${i}`]= true;
-                        console.log(`If ${i}`);
                     } else {
                         puzzleCompletion[`cont${i}`]= false;
-                        console.log(`Else ${i}`);
                     };
                 });
-                console.log(puzzleCompletion);
                 if (puzzleCompletion['cont1']) {
                     if (puzzleCompletion['cont2']) {
                         if (puzzleCompletion['cont3']) {
@@ -135,81 +143,25 @@
                     }
                 }
             }, 0)
-
         };
 
         //runs the app
         createWrapper();
         makeTiles(9);
-        //
-
-
-
-
-
+        //end runs the app
         //colors
         $.each($('.tile'), function() {
             while ($(this).css('background-color') === 'rgba(0, 0, 0, 0)') {
                 $(this).css('background-color', hex());
             }
         });
-
-        const tile = $('.tile');
-        const tileContainer = $('.tile-container');
-
-        //drag functions
-        let dragTileId;
-        let dragTileContainerId;
-
-        const dragStart = function () {
-            console.log("drag start");
-            dragTileId = $(this).attr('id');
-            dragTileContainerId = $(this).parent().attr('id');
-            console.log(dragTileId)
-            console.log(dragTileContainerId);
-        };
-
-        const dragEnd = function () {
-
-        };
-
-        const dragOver = function (e) {
-            e.preventDefault();
-        };
-
-        const dragEnter = function (e) {
-            e.preventDefault()
-            // $(this).addClass('hover');
-        };
-
-        const dragLeave = function () {
-            // $(this).removeClass('hover');
-        };
-
-        const dragDrop = function (e) {
-            console.log(`This was drop target ${$(this).attr('id')}`);
-            let swap = $(this).children().attr('id');
-            let stash = $(`#${swap}`);
-            console.log(`This was swapped: ${swap}`);
-            $(this).html($(`#${dragTileId}`));
-            $(`#${dragTileContainerId}`).html(stash);
-            tile.on('dragstart', dragStart);
-            checkPuzzle();
-        };
-
-        //containers listeners
-        tileContainer.on('dragover', dragOver);
-        tileContainer.on('dragenter', dragEnter);
-        tileContainer.on('dragleave', dragLeave);
-        tileContainer.on('drop', dragDrop);
-
-        //tile listeners
-
-        tile.on('dragstart', dragStart);
-        tile.on('dragend', dragEnd);
+        //end colors
+        //add button and attach listener
         $('#wrapper').append(`<button type="button" id="generate-puzzle-button">Generate Puzzle</button>`);
-        // $('#generate-puzzle-button').click(generatePuzzle(9));
-
+        $('#generate-puzzle-button').click(function() {
+            generatePuzzle(9);
+        });
+        //end add button and attach listener
 
     });
 })();

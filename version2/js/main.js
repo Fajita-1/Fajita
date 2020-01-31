@@ -27,8 +27,6 @@
             console.log(`This was swapped: ${swap}`);
             $(this).html($(`#${dragTileId}`));
             $(`#${dragTileContainerId}`).html(stash);
-            // dragTileContainerId = "";
-            // dragTileId = "";
             //reattach listeners
             $(this).off();
             $(this).children().off();
@@ -43,8 +41,6 @@
             $(`#${dragTileContainerId}`).on('dragenter', dragEnter);
             $(`#${dragTileContainerId}`).on('drop', dragDrop);
             $(`#${dragTileContainerId}`).children().on('dragstart', dragStart);
-            // $(`#${dragTileContainerId}`)
-            // $(`#${dragTileId}`)
             checkPuzzle();
         };
         const hex = () => {
@@ -85,7 +81,7 @@
                 let randomNumber = Math.floor(Math.random() * number);
                 while (usedNumArr.includes(randomNumber)) {
                     randomNumber = Math.floor(Math.random() * number);
-                }
+                };
                 $(`#tile-container-${i}`).html(posArr[randomNumber]);
                 $(`#tile-container-${i}`).on('dragover', dragOver);
                 $(`#tile-container-${i}`).on('dragenter', dragEnter);
@@ -95,10 +91,6 @@
                 j++;
                 i++;
             };
-            // tileContainer.on('dragover', dragOver);
-            // tileContainer.on('dragenter', dragEnter);
-            // tileContainer.on('drop', dragDrop);
-            // tile.on('dragstart', dragStart);
         };
         //checks to see if puzzle is in proper places
         const checkPuzzle = () => {
@@ -144,7 +136,6 @@
                 }
             }, 0)
         };
-
         //runs the app
         createWrapper();
         makeTiles(9);

@@ -1,7 +1,4 @@
-/*field.css('border', '1px solid black');*/
-/*field.css('background', '#ccf');*/
-/*field.width(width);*/
-/*field.height(height);*/
+
 * {
   box-sizing: border-box;
 }
@@ -12,41 +9,47 @@
 #wrapper {
     border: solid black 1px;
     background-color: #CCF;
-    width: 80vw;
-    height: 80vw;
+    /*width: 80vw;*/
+    /*height: 80vw;*/
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /*justify-content: space-evenly;*/
+    width: 363px;
+    height: 363px;
 }
 
 .tile-container {
     border: solid black 1px;
-    width: 33%;
-    height: 33%;
+    /*width: 33%;*/
+    /*height: 33%;*/
     margin: 0;
     color: white;
     font-size: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 120px;
+    height: 120px;
 }
 
 .tile {
-    background-image: url('http://source.unsplash.com/random/150x150');
-
-    width: 95%;
-    height: 95%;
-    border: solid black 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /*background-image: url('http://source.unsplash.com/random/150x150');*/
+    /*width: 95%;*/
+    /*height: 95%;*/
+    /*border: solid black 1px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*cursor: pointer;*/
+    display: table-cell;
+    width: 120px;
+    height: 120px;
+    border: 1px solid white;
+    background: url(https://picsum.photos/360);
     cursor: pointer;
 }
-//
-/*.fill{*/
-/*  display: block;*/
-/*}*/
+
 .hold {
     border: solid #ccc 30px;
 }
@@ -59,3 +62,14 @@
 .invisible {
     display: none;
 }
+
+/*testinnggggggg*/
+#tile-1 {background-position: left top;}
+#tile-2 {background-position: center top;}
+#tile-3 {background-position: right top;}
+#tile-4 {background-position: left center;}
+#tile-5 {background-position: center center;}
+#tile-6 {background-position: right center;}
+#tile-7 {background-position: left bottom;}
+#tile-8 {background-position: center bottom;}
+#tile-9 {background-position: right bottom;}
